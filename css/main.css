@@ -1,0 +1,206 @@
+body{
+    background-color:#f2e8dc;
+    font-family: calibri;
+}
+.navbar-dardel-logo{
+	display: block;
+	padding: 15px 15px 5px 15px;
+}
+.navbar{
+	min-height: 75px;
+}
+.navbar-default{
+	background-image: none!important;
+	background-color: none!important;
+	background: none!important;
+	box-shadow: none!important;
+	border: none!important;
+	border-color: none!important;
+}
+#nav-rubriques li>a{
+    color:#f15922;
+    text-transform: capitalize;
+}
+.flag-container{
+	width: 49%;
+    text-align: center;
+    display: inline-block;
+}
+.flag {
+	margin: auto;
+	width: 32px;
+	height: 32px;
+	background:url(../images/flags.png) no-repeat
+}
+.flag-fr {
+	background-position: -32px 0;}
+.flag-gb {
+	background-position: 0 -32px;}
+.toTop{
+	position: fixed;
+	right: 40px;
+	bottom: 30px;
+	display: none;
+}
+.toTop i{
+	font-size: 400%;
+	cursor: pointer;
+}
+.navbar-nav>li>a{
+	padding-top: 25px;
+	padding-bottom: 25px;
+	line-height: 65px;
+    font-size: 22px;
+    text-transform: capitalize;
+}
+.yamm ul{
+	list-style: none;
+}
+.yamm .grid-demo ul {
+  min-height: 195px;
+}
+.yamm .grid-demo ul li:first-child a {
+  color: black;
+}
+ul.dropdown-menu {
+  border: 0px;
+}
+.dropdown-menu li a {
+    color: #777;
+}
+img[alt="Dardel"]{	
+	width: 50%;
+}
+.rubriques img{
+	max-width: 60px;
+}
+.rubriques h4{
+	color: #615f5b;
+}
+#logo-dardel{
+	max-height: 95px;
+}
+.carousel-caption{
+	font-family: Lobster;
+	font-size: 200%;
+}
+.ligne-centre{
+    height: 2px;
+    border: solid black 2px;
+    margin-top: 18px;
+}
+.quality-dardel{
+	font-family: Lobster;
+	font-size: 200%;
+}
+.bloc-produits h3{
+	margin-top: 0px;
+}
+.bloc-produits p{
+	font-size: 22px;
+	margin: 0px 0px 40px 0px;
+}
+.bloc-produits .liste-produits img{
+	max-width: 200px;
+}
+.bloc-produits .row div div{
+	border-right: solid black 2px;
+}
+.bloc-produits .row div:last-child div{
+	border-right: 0px;
+}
+.miniature {
+    margin-right: 75px;
+    cursor: pointer;
+}
+#footer{
+	/*background-image: url(../images/footer-background.png);*/
+	background-color: #615f5b;
+	color: white;
+	padding: 40px 0px;
+}
+#footer h2{
+	font-family: Lobster;
+	font-size: 35px;
+	margin-top: 0px;
+}
+#footer address a{
+	color: white;
+}
+#footer ul{
+	list-style: none;
+}
+#footer ul li:first-child{
+	font-weight: bold;
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+#footer li a{
+	text-transform: uppercase;
+	color: white;
+	text-decoration: none;
+}
+#footer .adminLink{
+	cursor: pointer;
+}
+
+/* ****************************** styles unrelated to zoom ****************************** */
+
+/* these styles are for the demo, but are not required for the plugin */
+.zoom {
+	display:inline-block;
+	position: relative;
+}
+.zoom img{
+	max-width:300px;
+}
+
+/* magnifying glass icon */
+.zoom:after {
+	content:'';
+	display:block; 
+	width:33px; 
+	height:33px; 
+	position:absolute; 
+	top:0;
+	right:0;
+	background:url(zoom-plugin-ressources/icon.png);
+}
+
+.zoom img {
+	display: block;
+}
+
+.zoom img::selection { background-color: transparent; }
+
+#ex2 img:hover { cursor: url(zoom-plugin-ressources/grab.cur), default; }
+#ex2 img:active { cursor: url(zoom-plugin-ressources/grabbed.cur), default; }
+
+
+/*  MEDIA QUERIES */
+
+@media (max-width: 767px ) {
+	.navbar{
+		text-align: center;
+	}
+	.yamm .grid-demo ul {
+	    min-height: 0px;
+	    margin-bottom: 20px;
+	    text-align: center;
+	    padding: 0;
+	}
+	.navbar-nav>li>a {
+	    padding-top: 0px;
+	    padding-bottom: 0px;
+	    line-height: 60px;
+	}
+	.toTop{
+		display: none!important;
+	}
+	#footer{
+		text-align: center;
+	}
+	#footer ul{
+		padding-left: 0px;
+	}
+}
