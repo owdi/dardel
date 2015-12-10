@@ -9,7 +9,10 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/config/twig.inc.php');
 $template   = $GLOBALS['twig']->loadTemplate('admin.html.twig');
 $user       = $_SESSION['user'];
 
-var_dump(session_status());
+//test session active
+if (empty($_SESSION) ){
+    header('location: ' . '/index.php', true, 303);
+}
 
 if (isset($_POST['logout'])) {
     destroy_session();
@@ -17,6 +20,7 @@ if (isset($_POST['logout'])) {
 
 function destroy_session() {
     session_destroy();
+    unset ($_SESSION['id']);
     header('location: ' . '/index.php', true, 303);
 }
 
