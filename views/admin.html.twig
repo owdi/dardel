@@ -4,17 +4,127 @@
         <meta charset=utf-8 /> 
         <title>Admin</title>
         <meta name="viewport" content="width=device-width, user-scalable=no">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     </head>
     <body>
         <h1>Admin</h1>
-
+        {{ currentPath  }} 
         {% for key, userItem in user %}<p> bienvenue {{userItem.login}}</p>{% endfor %}
-
-
-        <form method="post" action="admin.php">
+        <div id="adminNavigation">
+            <form method="post" action="admin.php" id="logout">
                 <input type="submit" value="logout" name="logout"/>
-        </form>
+            </form>
+            <input type="button" value="add User" id="addUser">
+            <input type="button" value="Show User list" id="showUsers">
+        </div>
+        <div id="user_form" style="display:none;">
+            <h2>Ajouter un nouveau client</h2>
+            <form method="post" action="admin.php" id="addUser">
+                <label for="login">Code client :</label>
+                <input type="text" value="" name="login" id="login" placeholder="Entrez le code client"/>
+                <label for="password">Mot de passe :</label>
+                <input type="text" value="" name="password" id="password" placeholder="Entrez le mot de passe pour le client"/>
+                <label for="email">Email :</label>
+                <input type="text" value="" name="email" id="email" placeholder="Entrez un email"/>
+                <input type="submit" value="ajouter" name="add"/>
+            </form>
+        </div>
+        <div id="user_list" style="display:none;">
+            <table>
+                <tr>
+                    <td>Login</td>
+                    <td>Password</td>
+                    <td>Email</td>
+                </tr>                
+                {% for key, userListItem in user_list %}
+                <tr>                
+                    <td>{{userListItem.login}}</td>
+                    <td>{{userListItem.password}}</td>
+                    <td>{{userListItem.email}}</td>                              
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id="category_form" >
+            <h2>Ajouter une nouvelle categorie</h2>
+            <form method="post" action="admin.php" id="addCategory">
+            <label for="language">Choississez votre langue :</label>
+            <select name="language" id="languageSelect" >
+                {% for key, languageItem in language %}
+                    <option value="{{ languageItem.language_id }}">{{ languageItem.language }}</option>
+                {% endfor %}
+                </select>
+                <label for="category_title">Nom de la categorie :</label>
+                <input type="text" value="" name="category_title" id="category_title" placeholder="Entrez le titre de votre nouvelle categorie"/>
+                <input type="submit" value="ajouter" name="addCategory"/>
+            </form>
+        </div>
 
+        <div id="specification_form" >
+            <h2>Ajouter une nouvelle specification</h2>
+            <form method="post" action="admin.php" id="addSepcification">
+                <label for="category_title">Choississez votre catégorie :</label>
+                <select name="category" id="categorySelect" >
+                {% for key, categoryListItem in category_list %}
+                    <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
+                {% endfor %}
+                </select>
+                <label for="code">Code :</label>
+                <input type="text" value="" name="code" id="code" placeholder="Entrez le code"/>
+                <label for="designation">Désignation :</label>
+                <input type="text" value="" name="designation" id="designation" placeholder="Entrez la designation"/>
+                <label for="dimension">Dimensions intérieures en mm :</label>
+                <input type="text" value="" name="height" id="height" placeholder="Entrez la hauteur en mm"/>
+                <span>x</span>
+                <input type="text" value="" name="width" id="width" placeholder="Entrez la largeur en mm"/>
+                <input type="submit" value="ajouter" name="addSpecification"/>
+            </form>
+        </div>
+
+        <div id="specification_update_form" >
+            <h2>Modifier les carateristiques</h2>
+            <form method="post" action="admin.php" id="addSepcification">
+                <label for="category_title">Choississez votre catégorie :</label>
+                <select name="category" id="categorySelect" >
+                {% for key, categoryListItem in category_list %}
+                    <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="ajouter" name="chooseSpecification"/>
+            </form>
+        </div>
+
+        <div id="specification_list" >
+            <table>
+                <tr>
+                    <td>Code</td>
+                    <td>Désignation</td>
+                    <td>Dimensions intérieures en mm</td>
+                </tr>
+                <form method="post" action="admin.php" id="addSepcification">
+                {% for key, specificationListItem in specification_list %}
+                <tr>                
+                    <td><input type="text" value="{{specificationListItem.code}}" name="code" id="code"/></td>
+                    <td><input type="text" value="{{specificationListItem.description}}" name="designation" id="designation"/></td>
+                    <td><input type="text" value="{{specificationListItem.height}}" name="height" id="height"/> x <input type="text" value="{{specificationListItem.width}}" name="width" id="width"/></td>                              
+                </tr>
+                {% endfor %}
+                </form>
+            </table>
+        </div>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#addUser').click(function() {
+                $('#user_form').toggle();
+            });
+            $('#showUsers').click(function() {
+                $('#user_list').toggle();
+                $('#user_form').hide();
+            });
+        });
+    </script>
 
     </body>
 </html>
