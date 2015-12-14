@@ -5,6 +5,7 @@ body {
     margin-left: 240px;
     color: #444;
     background: #fff;
+    font-size: 18px;
 }
 
 
@@ -12,6 +13,7 @@ body {
     text-align: left;
     width: 400px;
     margin: 0 auto;
+    color : #5e6871;
 }
 
 
@@ -19,28 +21,48 @@ body {
     border: #aaa solid 1px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
+    height: 130px;
 }
 
 form.login input[type=text], form.login input[type=password], form.login select {
-    width: 150px;
-    height: 20px;
+    width: 165px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
+    float: right;
+    height: 20px;
 }
     
 input[type=text], input[type=password], input[type=number], input[type=date], input[type=checkbox], select {
-    margin: 6px;
+    margin: 0 30px 0 6px;
 }
 
 label {
  display:inline;
- margin:0 0 0 10px;
+ margin:5px 0 0 10px;
  }
 
 
-#password, #pseudo{
-    float: right;
-}
  .login input[type=submit]{
     text-align: center;
+    width: 180px;
+    margin: 0 0 0 115px;
+    height: 30px;
+    border: none;
+    border-radius: 4px;
+    background-color: #5e6871;
+    color: #fff;
+    font-size: 16px;
  }
+
+ #admin_logo{
+    margin: 150px 0 50px 0;
+    width: 100%;
+ }
+
+ .error{
+    background-color: #c75555;
+    border: none;
+    margin: 0 0 10px 0;
+    text-align: center;
+    color: #fff;
+}

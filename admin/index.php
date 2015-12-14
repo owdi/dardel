@@ -12,7 +12,7 @@ $template = $GLOBALS['twig']->loadTemplate('admin_connexion.html.twig');
 if ( isset($_POST['login']) && isset($_POST['password']) ) {
     $login      = $_POST['login'];
     $password   = $_POST['password'];
-    $user       = get_user_response($login, $password);
+    $response   = get_user_response($login, $password);
 }
 
 //return response for a user
@@ -25,8 +25,9 @@ function get_user_response($login ='', $password =''){
         header('location: ' . './controller/admin.php', true, 303);
     }else{
         $user = '';
+        return $response = 'Les identifants sont incorrects !';
     }    
 }
 
 //display twig template with arguments
-echo $template->render(array());
+echo $template->render(array('message' => $response));
