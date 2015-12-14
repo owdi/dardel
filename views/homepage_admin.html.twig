@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 /> 
+        <title>Admin</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+        <h1>Admin</h1>
+        {{ currentPath  }} 
+        {% for key, userItem in user %}<p> bienvenue {{userItem.login}}</p>{% endfor %}
+        <div id="adminNavigation">
+            <form method="post" action="admin.php" id="logout">
+                <input type="submit" value="logout" name="logout"/>
+            </form>
+            <input type="button" value="add User" id="addUser">
+            <input type="button" value="Show User list" id="showUsers">
+        </div>
+        <div id="user_form" style="display:none;">
+            <h2>Ajouter un nouveau client</h2>
+            <form method="post" action="admin.php" id="addUser">
+                <label for="login">Code client :</label>
+                <input type="text" value="" name="login" id="login" placeholder="Entrez le code client"/>
+                <label for="password">Mot de passe :</label>
+                <input type="text" value="" name="password" id="password" placeholder="Entrez le mot de passe pour le client"/>
+                <label for="email">Email :</label>
+                <input type="text" value="" name="email" id="email" placeholder="Entrez un email"/>
+                <input type="submit" value="ajouter" name="add"/>
+            </form>
+        </div>
+        <div id="user_list" style="display:none;">
+            <table>
+                <tr>
+                    <td>Login</td>
+                    <td>Password</td>
+                    <td>Email</td>
+                </tr>                
+                {% for key, userListItem in user_list %}
+                <tr>                
+                    <td>{{userListItem.login}}</td>
+                    <td>{{userListItem.password}}</td>
+                    <td>{{userListItem.email}}</td>                              
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div id="category_form" >
+            <h2>Ajouter une nouvelle categorie</h2>
+            <form method="post" action="admin.php" id="addCategory">
+            <label for="language">Choississez votre langue :</label>
+            <select name="language" id="languageSelect" >
+                {% for key, languageItem in language %}
+                    <option value="{{ languageItem.language_id }}">{{ languageItem.language }}</option>
+                {% endfor %}
+                </select>
+                <label for="category_title">Nom de la categorie :</label>
+                <input type="text" value="" name="category_title" id="category_title" placeholder="Entrez le titre de votre nouvelle categorie"/>
+                <input type="submit" value="ajouter" name="addCategory"/>
+            </form>
+        </div>
+
+        
+
+
+    <script>
+        $(document).ready(function() {
+            $('#addUser').click(function() {
+                $('#user_form').toggle();
+            });
+            $('#showUsers').click(function() {
+                $('#user_list').toggle();
+                $('#user_form').hide();
+            });
+        });
+    </script>
+
+    </body>
+</html>

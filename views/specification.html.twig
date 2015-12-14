@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8 /> 
+        <title>Admin</title>
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    </head>
+    <body>
+
+
+<div id="specification_form" >
+            <h2>Ajouter une nouvelle specification</h2>
+            <form method="post" action="/controller/specification.php" id="addSepcification">
+                <label for="category_title">Choississez votre catégorie :</label>
+                <select name="category" id="categorySelect" >
+                {% for key, categoryListItem in category_list %}
+                    <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
+                {% endfor %}
+                </select>
+                <label for="code">Code :</label>
+                <input type="text" value="" name="code" id="code" placeholder="Entrez le code"/>
+                <label for="designation">Désignation :</label>
+                <input type="text" value="" name="designation" id="designation" placeholder="Entrez la designation"/>
+                <label for="dimension">Dimensions intérieures en mm :</label>
+                <input type="text" value="" name="height" id="height" placeholder="Entrez la hauteur en mm"/>
+                <span>x</span>
+                <input type="text" value="" name="width" id="width" placeholder="Entrez la largeur en mm"/>
+                <input type="submit" value="ajouter" name="addSpecification"/>
+            </form>
+        </div>
+
+        <div id="specification_update_form" >
+            <h2>Modifier les carateristiques</h2>
+            <form method="post" action="/controller/specification.php" id="addSepcification">
+                <label for="category_title">Choississez votre catégorie :</label>
+                <select name="category" id="categorySelect" >
+                {% for key, categoryListItem in category_list %}
+                    <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="ajouter" name="chooseSpecification"/>
+            </form>
+        </div>
+
+        <div id="specification_list" >
+        <form method="post" action="/controller/specification.php" id="updateSepcification" name="updateSpecification">
+            <table>
+                <tr>
+                    <td>Code</td>
+                    <td>Désignation</td>
+                    <td>Dimensions intérieures en mm</td>
+                </tr>
+                
+                {% for key, specificationListItem in specification_list %}
+                <tr>
+                    <input type="hidden" value="{{specificationListItem.specification_id}}" name="specification_id[{{specificationListItem.specification_id}}]" id="specification_id"/>
+                    <td><input type="text" value="{{specificationListItem.code}}" name="code_{{specificationListItem.specification_id}}" id="code"/></td>
+                    <td><input type="text" value="{{specificationListItem.description}}" name="designation_{{specificationListItem.specification_id}}" id="designation"/></td>
+                    <td><input type="text" value="{{specificationListItem.height}}" name="height_{{specificationListItem.specification_id}}" id="height"/> x <input type="text" value="{{specificationListItem.width}}" name="width_{{specificationListItem.specification_id}}" id="width"/></td>                              
+                </tr>
+                {% endfor %}
+                
+            </table>
+            <input type="submit" value="mettre à jour" name="updateSpecification"/>
+            </form>
+        </div>
+        </body>
+
+</html>

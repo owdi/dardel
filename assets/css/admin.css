@@ -1,0 +1,46 @@
+body {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    margin-left: 240px;
+    color: #444;
+    background: #fff;
+}
+
+
+#admin_connexion {
+    text-align: left;
+    width: 400px;
+    margin: 0 auto;
+}
+
+
+#admin_connexion_form{
+    border: #aaa solid 1px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+form.login input[type=text], form.login input[type=password], form.login select {
+    width: 150px;
+    height: 20px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+    
+input[type=text], input[type=password], input[type=number], input[type=date], input[type=checkbox], select {
+    margin: 6px;
+}
+
+label {
+ display:inline;
+ margin:0 0 0 10px;
+ }
+
+
+#password, #pseudo{
+    float: right;
+}
+ .login input[type=submit]{
+    text-align: center;
+ }
