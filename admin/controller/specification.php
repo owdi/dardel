@@ -1,13 +1,17 @@
 <?php
-
-session_start();
-
-require_once($_SERVER['DOCUMENT_ROOT'].'/config/loader.inc.php');
-
 /****************************************************
 * Specification Form part
 *****************************************************/
+session_start();
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/loader.inc.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/config/session.inc.php');
+
+$template   = $GLOBALS['twig']->loadTemplate('specification.html.twig');
+
 $param = array();
+$error = false;
+
 if (isset($_POST['addSpecification'])) {
 
     $param['category_id']   = $_POST['category'];
@@ -56,11 +60,12 @@ if (isset($_POST['updateSpecification'])) {
 }
 
 
-$template   = $GLOBALS['twig']->loadTemplate('specification.html.twig');
+
 //display twig template with arguments
-echo $template->render(array('user'             => $user,
-                             'user_list'        => $user_list,
-                             'category_list'    => $category_list,
-                             'language'         => $language,
-                             'specification_list'    => $specification_list,
+echo $template->render(array('menu'          => 'specification',
+                             'user_list'     => $user_list,
+                             'message'       => $message, 
+                             'error'         => $error,
+                             'user'          => $user,
+                             'session'       => $_SESSION,
                             ));

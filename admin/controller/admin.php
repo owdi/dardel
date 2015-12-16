@@ -10,11 +10,11 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/model/category.model.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/model/specification.model.php');
 include_once($_SERVER['DOCUMENT_ROOT'].'/model/language.model.php');
 
-include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/user.php');
-include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/category.php');
-include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/specification.php');
+//include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/user.php');
+// include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/category.php');
+// include_once($_SERVER['DOCUMENT_ROOT'].'/admin/controller/specification.php');
 
-$template   = $GLOBALS['twig']->loadTemplate('admin.html.twig');
+$template   = $GLOBALS['twig']->loadTemplate('admin_homepage.html.twig');
 $user       = $_SESSION['user'];
 
 /****************************************************
@@ -41,9 +41,10 @@ $language = get_language();
 
 
 //display twig template with arguments
-echo $template->render(array('user'             => $user,
-                             'user_list'        => $user_list,
-                             'category_list'    => $category_list,
-                             'language'         => $language,
-                             'specification_list'    => $specification_list,
+echo $template->render(array('user'                 => $user,
+                             'user_list'            => $user_list,
+                             'category_list'        => $category_list,
+                             'language'             => $language,
+                             'specification_list'   => $specification_list,
+                             'session'              => $_SESSION,
                             ));

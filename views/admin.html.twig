@@ -4,8 +4,32 @@
     <meta charset=utf-8 />
     <title>{% block title %}Admin Dardel{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="/assets/css/admin.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
   </head>
   <body>
+    <div id="admin_navbar">
+      <div id="admin_navbar_container">
+        <a href="./admin.php"><img src="/assets/images/logo-dardel-admin-navbar.png" id="navbar_logo"></a>
+        {% if session != '' %}
+        <div id="link_logout">
+          <form method="post" action="admin.php" id="logout">
+                <input type="submit" value="Déconnexion" name="logout"/>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div id="admin_title_user">
+      {% for key, userItem in user %}<p> Vous êtes connecté en tant que <span class="font-bold">{{userItem.login}}</span></p>{% endfor %}
+    </div>    
+    <div id="admin_menu">
+      <ul>
+        <li{%if menu =='user' %} class ="active" {% endif %}><a href="./user.php">Utilisateurs</a></li>
+        <li{%if menu =='category' %} class ="active" {% endif %}><a href="./category.php">Catégorie</a></li>
+        <li{%if menu =='specification' %} class ="active" {% endif %}><a href="./specification.php">Caractéristiques</a></li>
+        <li{%if menu =='products' %} class ="active" {% endif %}><a href="./product.php">Produits</a></li>
+        </ul>
+    </div>
+    {% endif %}
     <div id="content">
       {% block body %}{% endblock %}
     </div>

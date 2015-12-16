@@ -1,0 +1,74 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %} Utilisateurs {% endblock %}
+
+{% block body %}
+
+    <div id="admin_sub_menu">
+      <ul>
+        <li><a href="#" id="addUserForm">Ajouter un utilisateur</a></li>
+        <li><a href="#" id="showUserList">Voir la liste des utilisateurs</a></li>
+        </ul>
+    </div>
+
+    <div id="user_form">
+        <h2>Ajouter un nouveau client</h2>
+        <div {%if error =='true' %} class ="error" {% else %}class="info"{% endif %}>{{message}}</div>
+        <form method="post" action="user.php" id="addUser">
+            <label for="login">Code client <span class="required">*</span>:</label>
+            <input type="text" value="" name="login" id="login" placeholder="Entrez le code client"/>
+            <br/>
+            <label for="password">Mot de passe <span class="required">*</span>:</label>
+            <input type="text" value="" name="password" id="password" placeholder="Entrez le mot de passe pour le client"/>
+            <br/>
+            <label for="email">Email :</label>
+            <input type="text" value="" name="email" id="email" placeholder="Entrez un email"/>
+            <br/>
+            <p class"legend">* Les champs sont obligatoires</p>
+            <input type="submit" value="valider" name="addUser"/>
+        </form>
+    </div>
+
+    <div id="user_list" style="display:none;">
+        <h2>Liste des clients</h2>
+        <table>
+            <tr>
+                <th>Login</th>
+                <th>Password</th>
+                <th>Email</th>
+            </tr>                
+            {% for key, userListItem in user_list %}
+            <tr>                
+                <td>{{userListItem.login}}</td>
+                <td>{{userListItem.password}}</td>
+                <td>{{userListItem.email}}</td>                              
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+<script>
+        $(document).ready(function() {
+
+            $('#addUserForm').css('color', 'black');
+
+            $('#addUserForm').click(function() {
+                $('#showUserList').css('color', '');
+                $('#addUserForm').css('color', 'black');
+                $('#user_form').show();
+                $('#user_list').hide();
+            });
+
+            $('#showUserList').click(function() {
+                $('#showUserList').css('color', 'black');
+                $('#addUserForm').css('color', '');                
+                $('#user_list').show();
+                $('#user_form').hide();
+            });
+
+            setTimeout(function(){
+                $('.error').fadeOut( "slow" );
+            }, 2000);
+        });
+    </script>
+{% endblock %}
