@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    <div id="admin_sub_menu">
+    <div class="admin_sub_menu">
       <ul>
         <li><a href="#" id="addUserForm">Ajouter un utilisateur</a></li>
         <li><a href="#" id="showUserList">Voir la liste des utilisateurs</a></li>
@@ -25,7 +25,7 @@
             <input type="text" value="" name="email" id="email" placeholder="Entrez un email"/>
             <br/>
             <p class"legend">* Les champs sont obligatoires</p>
-            <input type="submit" value="valider" name="addUser"/>
+            <input type="submit" value="Valider" name="addUser"/>
         </form>
     </div>
 
@@ -46,29 +46,4 @@
             {% endfor %}
         </table>
     </div>
-
-<script>
-        $(document).ready(function() {
-
-            $('#addUserForm').css('color', 'black');
-
-            $('#addUserForm').click(function() {
-                $('#showUserList').css('color', '');
-                $('#addUserForm').css('color', 'black');
-                $('#user_form').show();
-                $('#user_list').hide();
-            });
-
-            $('#showUserList').click(function() {
-                $('#showUserList').css('color', 'black');
-                $('#addUserForm').css('color', '');                
-                $('#user_list').show();
-                $('#user_form').hide();
-            });
-
-            setTimeout(function(){
-                $('.error').fadeOut( "slow" );
-            }, 2000);
-        });
-    </script>
 {% endblock %}

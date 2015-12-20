@@ -23,19 +23,22 @@ if (isset($_POST['addSpecification'])) {
 var_dump($param);
 
 
-    if (!empty($param['category_id']) && !empty($param['code']) && !empty($param['description']) && !empty($param['height']) && !empty($param['width']) ) {
+    if (!empty($param['category_id']) && !empty($param['code']) && !empty($param['description']) && !empty($param['height']) && !empty($param['width'])) {  
+
         $create_specification = set_specification($param);       
 
-        if ($create_specification  == true) {        
+        if ($create_specification  == true) { 
             echo 'la specification a été ajouté';
-        }else{
+        } else {
             echo 'une erreur s\'est produite';
         }
     }
 }
 
 if (isset($_POST['chooseSpecification'])) {
+
     $category_id = $_POST['category'];
+
     $specification_list = get_all_specification_by_category($category_id);
 }
 
@@ -52,14 +55,12 @@ if (isset($_POST['updateSpecification'])) {
         //treatment for update
         $response = update_specification_by_categorie($param);        
     }
-    if($response == true){
-            echo 'les specifications ont été mis à jour';
-    }else{
+    if ($response == true) {
+        echo 'les specifications ont été mis à jour';
+    } else {
         echo 'une erreur s\'est produite';
     }
 }
-
-
 
 //display twig template with arguments
 echo $template->render(array('menu'          => 'specification',

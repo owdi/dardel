@@ -1,6 +1,7 @@
 <?php
 
-function get_user($login, $password){            
+function get_user($login, $password)
+{            
     $request = $GLOBALS['bdd']->prepare('SELECT 
                                             user_id, 
                                             login, 
@@ -16,10 +17,12 @@ function get_user($login, $password){
     $request->execute(array('login' => $login, 'password' => $password));
     $user = $request->fetchAll();
     $request->closeCursor();
+    
     return $user;
 }
 
-function get_all_user(){            
+function get_all_user()
+{            
     $request = $GLOBALS['bdd']->prepare('SELECT 
                                             user_id, 
                                             login, 
@@ -34,10 +37,12 @@ function get_all_user(){
     $request->execute();
     $users = $request->fetchAll();
     $request->closeCursor();
+
     return $users;
 }
 
-function set_user($param) {
+function set_user($param)
+{
     $request = $GLOBALS['bdd']->prepare('INSERT INTO user (login, password, email, account_type_id, status, created_date)
                                          VALUES (                                            
                                             :login,
@@ -56,5 +61,6 @@ function set_user($param) {
                                              ));    
     //var_dump($GLOBALS['bdd']->errorInfo()); 
     $request->closeCursor();
+
     return $create_user;
 }

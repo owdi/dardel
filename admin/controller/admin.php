@@ -17,21 +17,13 @@ include_once($_SERVER['DOCUMENT_ROOT'].'/model/language.model.php');
 $template   = $GLOBALS['twig']->loadTemplate('admin_homepage.html.twig');
 $user       = $_SESSION['user'];
 
-/****************************************************
-* Session part
-*****************************************************/
-
-//test session active
-if (empty($_SESSION) ){
-    //header('location: ' . '/index.php', true, 303);
-}
-
 //button logout 
-if (isset($_POST['logout'])) {
-    destroy_session();
+if (isset($_POST['logout'])) {    
+    destroy_session();    
 }
 
-function destroy_session() {
+function destroy_session() 
+{
     session_destroy();
     unset ($_SESSION['id']);
     header('location: ' . '/index.php', true, 303);
