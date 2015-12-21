@@ -25,7 +25,7 @@ if (isset($_POST['addCategory'])) {
         if ($check_category  == true) {
 
             $error      = true;
-            $message    = 'La catégorie "'.$param['category_title'].'" pour cette langue existe déjà';
+            $message    = 'La catégorie "'.$param['category_title'].'" pour cette langue existe déjà !';
 
         }else {
 
@@ -34,12 +34,12 @@ if (isset($_POST['addCategory'])) {
             if ($create_category  == true) {
 
                 $error      = false;
-                $message    = 'La catégorie "'.$param['category_title'].'" a été ajouté';
+                $message    = 'La catégorie "'.$param['category_title'].'" a été ajouté.';
 
             } else {
 
                 $error      = true;            
-                $message    = 'une erreur s\'est produite';
+                $message    = 'une erreur s\'est produite !';
             }
         }        
     } else {

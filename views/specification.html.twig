@@ -3,59 +3,74 @@
 {% block title %} Caractéristiques {% endblock %}
 
 {% block body %}
-
+{{app.request.query.get('category_id')}}
     <div class="admin_sub_menu">
       <ul>
-        <li><a href="#" id="addUserForm">Ajouter une caractéristique</a></li>
-        <li><a href="#" id="showUserList">Modifier une caractéristique</a></li>
+        <li><a href="#" id="addSepcificationForm">Ajouter une caractéristique</a></li>
+        <li><a href="#" id="showCategoryList">Modifier une caractéristique</a></li>
         </ul>
     </div>
 
+
     <div id="specification_form" >
         <h2>Ajouter une nouvelle specification</h2>
-        <form method="post" action="/controller/specification.php" id="addSepcification">
-            <label for="category">Choississez votre catégorie :</label>
-            <select name="category" id="category" >
-            {% for key, categoryListItem in category_list %}
-                <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
-            {% endfor %}
+        <div {%if error =='true' %} class ="error" {% else %}class="info"{% endif %}>{{message}}</div>
+        <form method="post" action="specification.php" id="addSepcification">
+            <label for="language">Langue :</label>
+            <select name="language" id="language" >
+                {% for key, languageItem in language %}
+                    <option value="{{ languageItem.language_id }}">{{ languageItem.language }}</option>
+                {% endfor %}
             </select>
             <br/>
-            <label for="code">Code :</label>
+            <label for="category">Catégorie <span class="required">*</span>:</label>
+            {# <select name="category" id="category" >
+            {% for key, categoryListItem in category_list %}
+                <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }} ({{ categoryListItem.language }})</option>
+            {% endfor %}
+            </select> #}
+            <select id="category" name="category">
+    <option value="">-- category--</option>
+</select>
+            <br/>
+            <label for="code">Code <span class="required">*</span>:</label>
             <input type="text" value="" name="code" id="code" placeholder="Entrez le code"/>
             <br/>
-            <label for="designation">Désignation :</label>
+            <label for="designation">Désignation <span class="required">*</span>:</label>
             <input type="text" value="" name="designation" id="designation" placeholder="Entrez la designation"/>
             <br/>
-            <label for="dimension">Dimensions intérieures en mm :</label>
+            <label for="height">Hauteur <span class="italic mini-size">(en mm)</span> <span class="required">*</span>:</label>
             <input type="text" value="" name="height" id="height" placeholder="Entrez la hauteur en mm"/>
-            <span>x</span>
+            <br/>
+            <label for="witdh">Largeur <span class="italic mini-size">(en mm)</span> <span class="required">*</span>:</label>
             <input type="text" value="" name="width" id="width" placeholder="Entrez la largeur en mm"/>
             <br/>
+            <p class"legend">* Les champs sont obligatoires</p>
             <input type="submit" value="Valider" name="addSpecification"/>
         </form>
     </div>
 
-    <div id="specification_update_form" >
+    <div id="specification_update_form">
         <h2>Modifier les carateristiques</h2>
-        <form method="post" action="/controller/specification.php" id="addSepcification">
-            <label for="category_title">Choississez votre catégorie :</label>
+        <form method="post" action="specification.php" id="chooseSpecification">
+            <label for="category_title">Choississez lacatégorie :</label>
             <select name="category" id="categorySelect" >
             {% for key, categoryListItem in category_list %}
-                <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }}</option>
+                <option value="{{ categoryListItem.category_id }}" {% if category_id  ==  categoryListItem.category_id %} selected {% endif %}>{{ categoryListItem.category_title }}</option>
             {% endfor %}
             </select>
-            <input type="submit" value="ajouter" name="chooseSpecification"/>
+            <input type="submit" value="Valider" name="chooseSpecification"/>
         </form>
     </div>
 
+<br/>
     <div id="specification_list" >
         <form method="post" action="/controller/specification.php" id="updateSepcification" name="updateSpecification">
             <table>
                 <tr>
-                    <td>Code</td>
-                    <td>Désignation</td>
-                    <td>Dimensions intérieures en mm</td>
+                    <th>Code</th>
+                    <th>Désignation</th>
+                    <th>Dimensions intérieures en mm</th>
                 </tr>
                 
                 {% for key, specificationListItem in specification_list %}

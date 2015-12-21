@@ -28,6 +28,7 @@ function get_user_response($login ='', $password ='')
         header('location: ' . './controller/admin.php', true, 303);
 
     } else {
+        
         $user = '';
 
         return $response = 'Les identifants sont incorrects !';
