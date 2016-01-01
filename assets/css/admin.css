@@ -223,6 +223,33 @@ th{
     color: #c75555;
 }
 
+#specification_list{
+    margin: 50px 0 0 0;
+}
 
+#specification_list #height,  #specification_list #width{
+    width: 50px;
+}
 
+#specification_list #designation{
+    width: 400px;
+}
 
+#specification_list #code{
+    width: 100px;
+}
+#specification_list td {
+    background-color: #F5E8D7;
+
+}
+#specification_list input[type=text] {
+    font-weight: bold;
+    font-size:12px;
+    background-color: #F5E8D7;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, .5);
+
+}
+#specification_list p {
+    text-align: center;
+}

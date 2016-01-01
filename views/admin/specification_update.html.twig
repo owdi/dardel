@@ -1,0 +1,119 @@
+{% extends 'admin.html.twig' %}
+
+{% block title %} Caractéristiques {% endblock %}
+
+{% block body %}
+
+    <div class="admin_sub_menu">
+      <ul>
+        <li><a href="specification.php" id="addSepcificationForm">Ajouter une caractéristique</a></li>
+        <li><a href="specification_update.php" id="showCategoryList">Modifier une caractéristique</a></li>
+        </ul>
+    </div>
+
+
+    <div id="specification_update_form" >
+        <h2>Modifier les carateristiques</h2>
+
+        <form method="post" action="specification_update.php" id="chooseLanguageForUpdate">
+            <label for="languageCategoryForUpdate">Langue :</label>
+            <select name="languageCategoryForUpdate" id="languageCategoryForUpdate">
+                    <option value="">Choisir la langue</option>
+                {% for key, languageItem in language %}
+                    <option value="{{ languageItem.language_id }}" {% if language_category  ==  languageItem.language_id  %} selected {% endif %}>{{ languageItem.language }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        {% if active == true %}
+        <form method="post" action="specification_update.php" id="chooseSpecificationForUpdate">
+            <label for="category_title">Choississez la catégorie :</label>
+            <select name="category" id="categorySelect" >
+            {% for key, categoryListItem in category_list %}
+                <option value="{{ categoryListItem.category_id }}" {% if category_id  ==  categoryListItem.category_id %} selected {% endif %}>{{ categoryListItem.category_title }}</option>
+            {% endfor %}
+            </select>
+            <p>
+                <input type="submit" value="Valider" name="chooseSpecificationForUpdate"/>
+            </p>
+        </form>
+        {% endif %}
+    </div>        
+
+    {% if specification_list != false %}
+        <div id="specification_list">
+            <div {%if error =='true' %} class ="error" {% else %}class="info"{% endif %}>{{message}}</div>
+
+            <form method="post" action="specification_update.php?language={{ language_on }}&category_id={{ category_on }}" id="updateSepcification" name="updateSpecification">
+                <table>
+                    <tr>
+                        <th>Code</th>
+                        <th>Désignation</th>
+                        <th>Dimensions intérieures en mm (HxL)</th>
+                    </tr>
+                    
+                    {% for key, specificationListItem in specification_list %}
+                    <tr>
+                        <input type="hidden" value="{{specificationListItem.specification_id}}" name="specification_id[{{specificationListItem.specification_id}}]" id="specification_id"/>
+                        <td><input type="text" value="{{specificationListItem.code}}" name="code_{{specificationListItem.specification_id}}" id="code" onblur="checkEmpty(this);"/></td>
+                        <td><input type="text" value="{{specificationListItem.description}}" name="designation_{{specificationListItem.specification_id}}" id="designation" onblur="checkEmpty(this);"/></td>
+                        <td><input type="text" value="{{specificationListItem.height}}" name="height_{{specificationListItem.specification_id}}" id="height" onblur="checkHeightWitdh(this);"/> x <input type="text" value="{{specificationListItem.width}}" name="width_{{specificationListItem.specification_id}}" id="width" onblur="checkHeightWitdh(this);"/></td>                              
+                    </tr>
+                    {% endfor %}                
+                </table>
+                <p>
+                    <input type="submit" value="mettre à jour" name="updateSpecification" id="updateSpecification"/>
+                </p>
+            </form>
+        </div>    
+    {% endif %}
+
+
+
+<script type="text/javascript">
+
+    function valid(field, error)
+    {
+        if (error) {
+
+            field.style.backgroundColor = "#fba";
+            $('#updateSpecification').hide();
+
+        } else {
+
+            field.style.backgroundColor = "";
+            $('#updateSpecification').show();
+
+        }
+    }
+
+    function checkHeightWitdh(field)
+    {
+        if (field.value == '' || isNaN(field.value)) {
+
+            valid(field, true);
+            return false;
+
+        } else {
+
+            valid(field, false);
+            return true;
+        }
+    }
+
+    function checkEmpty(field)
+    {
+        if (field.value == '') {
+
+            valid(field, true);
+            return false;
+
+        } else {
+
+            valid(field, false);
+            return true;
+        }
+    }
+</script>
+
+{% endblock %}

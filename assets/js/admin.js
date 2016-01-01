@@ -35,61 +35,37 @@ $(document).ready(function() {
     });
 
     //specification form
-    $('#addSepcificationForm').css('color', 'black');
+     $('#addSepcificationForm').css('color', 'black');
 
     $('#addSepcificationForm').click(function() {
         $('#showCategoryList').css('color', '');
         $('#addSepcificationForm').css('color', 'black');
-        $('#specification_form').show();
-        $('#specification_update_form').hide();dort
+        // $('#specification_form').show();
+        // $('#specification_update_form').hide();
     });
 
     $('#showCategoryList').click(function() {
         $('#showCategoryList').css('color', 'black');
         $('#addSepcificationForm').css('color', '');                
-        $('#specification_update_form').show();
-        $('#specification_form').hide();
+        // $('#specification_update_form').show();
+        // $('#specification_form').hide();
     });
 
     setTimeout(function(){
         $('.error').fadeOut( "slow" );
     }, 2000);
 
+    
+    $( "#language_category").change(function() {
+        $('#chooseLanguageForInsert').submit();
+    });
 
-    var language = $('#language');
-    var category = $('#category');
-     
-    // chargement des régions
-    $.ajax({
-        url: 'specification.php',
-        data: 'go', // on envoie $_GET['go']
-        dataType: 'json', // on veut un retour JSON
-        success: function(json) {
-            $.each(json, function(index, value) { // pour chaque noeud JSON
-                // on ajoute l option dans la liste
-                category.append('<option value="'+ index +'">'+ value +'</option>');
-            });
-        }
+    $( "#languageCategoryForUpdate").change(function() {
+        $('#chooseLanguageForUpdate').submit();
     });
- 
-    // à la sélection d une région dans la liste
-    language.on('change', function() {
-        var val = $(this).val(); // on récupère la valeur de la région
- 
-        if(val != '') {
-            category.empty(); // on vide la liste des départements
-             
-            $.ajax({
-                url: 'specification.php',
-                data: 'id_category='+ val, // on envoie $_GET['id_region']
-                dataType: 'json',
-                success: function(json) {
-                    $.each(json, function(index, value) {
-                        category.append('<option value="'+ index +'">'+ value +'</option>');
-                    });
-                }
-            });
-        }
-    });
+    
+
+
+
 
 });
