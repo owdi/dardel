@@ -64,27 +64,43 @@ if (isset($_POST['updateSpecification'])) {
         $param['height']           = $_POST['height_' . $key];
         $param['width']            = $_POST['width_' . $key];
 
-        if (!is_integer($param['height'])) {
-            $error    = true;
-            $$message = 'une erreur s\'est produite !';
+        if (!is_numeric($param['height'])) {
+            $error   = true;
+            $message = 'La hauteur doit être un chiffre !';
+        }
+        if (!is_numeric($param['width'])) {
+            $error   = true;
+            $message = 'La largeur doit être un chiffre !';
+        }
+        if (empty($param['code'])) {
+            $error   = true;
+            $message = 'le code ne peut pas être vide !';
+        }
+        if (empty($param['description'])) {
+            $error   = true;
+            $message = 'La description ne peut pas être vide';
         }
 
-        //treatment for update
-        //$response = update_specification_by_categorie($param);
+        if ($error == false) {
+            //treatment for update
+            $response = update_specification_by_categorie($param);
 
+        } else {
+
+            $response = false;
+        }
     }
 
-    var_dump($response);
     if ($response == true) {
 
         $error   = false;
         $message = 'les specifications ont été mis à jour';
+
     } else {
+
         $error    = true;
         $$message = 'une erreur s\'est produite !';
     }
-
-    //header('location: ' . 'specification_update.php?language=' . $_SESSION['language'] . '&category_id=' . $_SESSION['category_id'], true, 303);
 }
 
 $language_category = (isset($_GET['language'])) ? $_GET['language'] : false;

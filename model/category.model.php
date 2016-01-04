@@ -108,5 +108,5 @@ function set_category_description($param, $lastInsertId)
     //var_dump($GLOBALS['bdd']->errorInfo());
     $request->closeCursor();
 
-    return $create_category_description;
+    return $create_category;
 }

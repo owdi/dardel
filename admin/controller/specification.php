@@ -41,6 +41,7 @@ if (isset($_POST['addSpecification'])) {
             $error   = true;
             $message = 'une erreur s\'est produite !';
         }
+
     } else {
 
         $error   = true;
