@@ -4,6 +4,42 @@
 
 {% block body %}
 
+    <div class="admin_sub_menu">
+      <ul>
+        <li><a href="#" id="addProductForm">Ajouter un produit</a></li>
+        <li><a href="#" id="updateProductForm">Mettre à jour un produit</a></li>
+        </ul>
+    </div>
     
+    <div id="product_form" >
+        <h2>Ajouter un nouveau produit</h2>
+        <div {%if error =='true' %} class ="error" {% else %}class="info"{% endif %}>{{message}}</div>
+        <form method="post" action="product.php?language={{language_product}}" id="chooseLanguageForProductInsert">
+            <label for="language_product">Langue :</label>
+            <select name="language_product" id="language_product">
+                    <option value="">Choisir la langue</option>
+                {% for key, languageItem in language %}
+                    <option value="{{ languageItem.language_id }}" {% if language_product  ==  languageItem.language_id  %} selected {% endif %}>{{ languageItem.language }}</option>
+                {% endfor %}
+            </select>            
+        </form>
+        {% if active == true %}
+            <form method="post" action="product.php?language={{language_category}}" id="addProduct">
+                <label for="category">Catégorie <span class="required">*</span>:</label>
+                <select name="category" id="category" >
+                    <option value="">Choisir la catégorie</option>
+                    {% for key, categoryListItem in category_list %}
+                    <option value="{{ categoryListItem.category_id }}">{{ categoryListItem.category_title }} ({{ categoryListItem.language }})</option>
+                    {% endfor %}
+                </select>            
+                <label for="title">Titre <span class="required">*</span>:</label>
+                <input type="text" value="" name="title" id="product_title" placeholder="Entrez le titre"/>            
+                <label for="description">Description <span class="required">*</span>:</label>
+                <textarea value="" name="description" id="description" placeholder="Entrez la description"/></textarea>
+                <p class"legend">* Les champs sont obligatoires</p>
+                <input type="submit" value="Valider" name="addProduct"/>
+            </form>
+        {% endif %}
+    </div>
 
 {% endblock %}

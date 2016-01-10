@@ -63,6 +63,10 @@ $(document).ready(function() {
     $( "#languageCategoryForUpdate").change(function() {
         $('#chooseLanguageForUpdate').submit();
     });
+
+    $( '#language_product').change(function() {
+        $('#chooseLanguageForProductInsert').submit();
+    });
     
 
 
