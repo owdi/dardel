@@ -171,7 +171,7 @@ th{
 }
 #admin_menu li a {
     display: block;
-    width: 200px;
+    width: 150px;
     text-decoration: none;
     padding: 6px;
     color: #fff;
@@ -214,14 +214,14 @@ th{
     color: #000;
 }
 /** form **/
-#user_form, #category_form, #specification_form, #specification_update_form, #product_form{
+#user_form, #category_form, #specification_form, #specification_update_form, #product_form, #picture_form{
     border: 2px solid #efa747;
     border-radius: 4px;
     width: 615px;
     margin: 0 0 0 179px;
     text-align: center;
 }
-#user_form p, #category_form p, #specification_form p, #specification_update_form p, #product_form p{
+#user_form p, #category_form p, #specification_form p, #specification_update_form p, #product_form p, #picture_form p{
     font-style: italic;
     font-size: 14px;
     text-align: left;

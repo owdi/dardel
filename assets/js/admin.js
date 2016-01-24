@@ -67,6 +67,10 @@ $(document).ready(function() {
     $( '#language_product').change(function() {
         $('#chooseLanguageForProductInsert').submit();
     });
+
+    $( '#language_picture').change(function() {
+        $('#chooseLanguageForPictureInsert').submit();
+    });
     
 
 

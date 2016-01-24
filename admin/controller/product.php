@@ -49,18 +49,22 @@ if (isset($_POST['addProduct'])) {
     $param['status']      = 1;
 
     if (empty($param['title'])) {
+
         $error   = true;
         $message = 'le titre ne peut pas être vide !';
     }
     if (empty($param['description'])) {
+
         $error   = true;
         $message = 'La description ne peut pas être vide';
     }
     if (empty($param['language_id'])) {
+
         $error   = true;
         $message = 'la langue ne peut pas être vide !';
     }
     if (empty($param['category_id'])) {
+
         $error   = true;
         $message = 'la catégorie ne peut pas être vide !';
     }
@@ -77,7 +81,7 @@ if (isset($_POST['addProduct'])) {
     if ($response == true) {
 
         $error   = false;
-        $message = 'le produit a été ajouté';
+        $message = 'le produit "' . $param['title'] . '"a été ajouté';
 
     } else {
 
